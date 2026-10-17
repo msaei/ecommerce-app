@@ -1,0 +1,245 @@
+/*
+ * Reusable primitives, defined as Tailwind utilities so they work with
+ * variants (md:btn-sm, hover:…). Modifiers only set --btn-* variables, so
+ * class order never matters: <button class="btn btn-secondary btn-sm">.
+ */
+
+/* ---------- Layout ---------- */
+
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility container-text {
+  width: 100%;
+  max-width: var(--container-text);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Breaks a child out of its container to the full viewport width. */
+@utility full-bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+@utility section {
+  padding-block: var(--spacing-section);
+}
+
+/* Product listing: 2 → 3 → 4 columns, tight gaps, generous row spacing. */
+@utility product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 0.25rem;
+  row-gap: 2.5rem;
+
+  @variant md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 3.5rem;
+  }
+
+  @variant lg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Editorial layouts: 4 columns on phones, 12 from md up. */
+@utility editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-gutter);
+
+  @variant md {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* Horizontal snap row for product carousels on small screens. */
+@utility scroll-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 70%;
+  gap: 0.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+  }
+
+  @variant md {
+    grid-auto-columns: calc((100% - 1rem) / 3);
+    gap: 0.5rem;
+  }
+
+  @variant lg {
+    grid-auto-columns: calc((100% - 1.5rem) / 4);
+  }
+}
+
+/* Image frame: neutral ground, cover-fit media. Pair with aspect-product etc. */
+@utility media-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface);
+
+  & > :is(img, video, picture) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@utility divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-line);
+}
+
+/* ---------- Typography ---------- */
+
+/* Small uppercase label for eyebrows, nav, buttons and badges. */
+@utility eyebrow {
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--tracking-label);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ---------- Links ---------- */
+
+/* Inline text link: always underlined, underline softens on hover. */
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: currentColor;
+  transition: text-decoration-color 200ms var(--ease-luxe);
+
+  &:hover {
+    text-decoration-color: transparent;
+  }
+}
+
+/* Quiet link: no underline until hover. */
+@utility link-subtle {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 200ms var(--ease-luxe);
+
+  &:hover,
+  &[aria-current="page"] {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+/* Default is the primary style: solid ink, square corners, uppercase label. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--btn-h, 3rem);
+  padding-inline: var(--btn-px, 2rem);
+  border: 1px solid var(--btn-border, var(--color-ink));
+  border-radius: 0;
+  background-color: var(--btn-bg, var(--color-ink));
+  color: var(--btn-fg, var(--color-paper));
+  font-size: var(--text-label);
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition-property: background-color, color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease-luxe);
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--btn-bg-hover, var(--color-ink-soft));
+    color: var(--btn-fg-hover, var(--color-paper));
+    border-color: var(--btn-border-hover, var(--color-ink-soft));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+/* Outlined; fills with ink on hover. */
+@utility btn-secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  --btn-border: var(--color-ink);
+  --btn-bg-hover: var(--color-ink);
+  --btn-fg-hover: var(--color-paper);
+  --btn-border-hover: var(--color-ink);
+}
+
+/* Text-only button for low-emphasis actions. */
+@utility btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  --btn-border: transparent;
+  --btn-bg-hover: transparent;
+  --btn-fg-hover: var(--color-muted);
+  --btn-border-hover: transparent;
+  --btn-px: 0;
+}
+
+/* For use over dark imagery. */
+@utility btn-inverse {
+  --btn-bg: var(--color-paper);
+  --btn-fg: var(--color-ink);
+  --btn-border: var(--color-paper);
+  --btn-bg-hover: transparent;
+  --btn-fg-hover: var(--color-paper);
+  --btn-border-hover: var(--color-paper);
+}
+
+@utility btn-sm {
+  --btn-h: 2.5rem;
+  --btn-px: 1.25rem;
+}
+
+@utility btn-lg {
+  --btn-h: 3.5rem;
+  --btn-px: 2.5rem;
+}
+
+@utility btn-block {
+  width: 100%;
+}
+
+/* Square icon-only button; give it an aria-label. */
+@utility btn-icon {
+  --btn-px: 0;
+  width: var(--btn-h, 3rem);
+}
