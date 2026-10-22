@@ -1,0 +1,152 @@
+// Initial catalog, loaded by `npm run db:seed`.
+// Size-level stock was flattened to a single total per product (no variants yet).
+
+import type { Product } from "@/lib/products";
+
+export const seedCategories = [
+  { slug: "handbags", name: "Handbags" },
+  { slug: "shoes", name: "Shoes" },
+  { slug: "accessories", name: "Accessories" },
+  { slug: "ready-to-wear", name: "Ready-to-wear" },
+];
+
+export const seedProducts: Omit<Product, "sizes">[] = [
+  {
+    slug: "structured-leather-tote",
+    name: "Structured leather tote",
+    category: "Handbags",
+    price: 2650,
+    stock: 12,
+    styleNumber: "AT-1001-BRN",
+    color: "Dark brown",
+    hue: "#5b4636",
+    gallery: ["front", "side", "detail", "back"],
+    description:
+      "A roomy everyday tote cut from full-grain calfskin, with a squared base that holds its shape and an unlined interior that softens with use.",
+    details: [
+      "Full-grain calfskin",
+      "Microsuede lining",
+      "Interior zip pocket",
+      "Gold-toned hardware",
+      "W 38 x H 30 x D 14 cm",
+      "Made in Italy",
+    ],
+    badge: "New",
+  },
+  {
+    slug: "suede-horsebit-loafer",
+    name: "Suede horsebit loafer",
+    category: "Shoes",
+    price: 980,
+    stock: 11,
+    styleNumber: "AT-2014-TAN",
+    color: "Tobacco",
+    hue: "#8a6a4f",
+    gallery: ["side", "front", "detail", "back"],
+    description:
+      "A softly structured loafer in brushed suede, finished with a metal bit across the vamp and a leather sole stitched by hand.",
+    details: [
+      "Suede upper",
+      "Leather lining and sole",
+      "Metal bit detail",
+      "1.5 cm heel",
+      "Made in Italy",
+    ],
+  },
+  {
+    slug: "printed-silk-carre",
+    name: "Printed silk carré",
+    category: "Accessories",
+    price: 495,
+    stock: 2,
+    styleNumber: "AT-3302-RED",
+    color: "Bordeaux",
+    hue: "#7d2f2b",
+    gallery: ["front", "detail", "side", "back"],
+    description:
+      "A square scarf in silk twill printed with an archival botanical motif, with hand-rolled edges.",
+    details: ["100% silk twill", "Hand-rolled edges", "90 x 90 cm", "Made in Italy"],
+    badge: "New",
+  },
+  {
+    slug: "double-faced-wool-coat",
+    name: "Double-faced wool coat",
+    category: "Ready-to-wear",
+    price: 3900,
+    stock: 0,
+    styleNumber: "AT-4120-OLV",
+    color: "Olive",
+    hue: "#4b4f45",
+    gallery: ["front", "back", "side", "detail"],
+    description:
+      "An unlined coat in double-faced wool, cut with dropped shoulders and a relaxed length that falls below the knee.",
+    details: [
+      "100% virgin wool",
+      "Unlined, hand-finished seams",
+      "Horn buttons",
+      "Two patch pockets",
+      "Made in Italy",
+    ],
+  },
+  {
+    slug: "mini-shoulder-bag",
+    name: "Mini shoulder bag",
+    category: "Handbags",
+    price: 1890,
+    stock: 7,
+    styleNumber: "AT-1018-BLK",
+    color: "Black",
+    hue: "#1f1d1c",
+    gallery: ["front", "side", "back", "detail"],
+    description:
+      "A compact shoulder bag in polished leather with a flap closure and an adjustable strap that can be worn short or long.",
+    details: [
+      "Polished calfskin",
+      "Adjustable leather strap",
+      "Magnetic flap closure",
+      "W 22 x H 15 x D 7 cm",
+      "Made in Italy",
+    ],
+  },
+  {
+    slug: "leather-belt-with-buckle",
+    name: "Leather belt with buckle",
+    category: "Accessories",
+    price: 520,
+    stock: 12,
+    styleNumber: "AT-3108-BRN",
+    color: "Chocolate",
+    hue: "#3d2b22",
+    gallery: ["front", "detail", "side", "back"],
+    description: "A 3 cm belt in smooth leather with a sculpted brass buckle.",
+    details: ["Smooth calfskin", "Brass buckle", "3 cm width", "Made in Italy"],
+  },
+  {
+    slug: "cashmere-crewneck",
+    name: "Cashmere crewneck",
+    category: "Ready-to-wear",
+    price: 1150,
+    stock: 6,
+    styleNumber: "AT-4205-OAT",
+    color: "Oatmeal",
+    hue: "#b5a68f",
+    gallery: ["front", "back", "detail", "side"],
+    description:
+      "A midweight crewneck knitted from Mongolian cashmere, with ribbed trims and a relaxed fit.",
+    details: ["100% cashmere", "Ribbed collar, cuffs and hem", "Relaxed fit", "Made in Scotland"],
+  },
+  {
+    slug: "polished-ankle-boot",
+    name: "Polished ankle boot",
+    category: "Shoes",
+    price: 1350,
+    stock: 9,
+    styleNumber: "AT-2031-BLK",
+    color: "Black",
+    hue: "#2b2826",
+    gallery: ["side", "front", "back", "detail"],
+    description:
+      "A Chelsea-style ankle boot in polished leather with elastic side panels and a stacked leather heel.",
+    details: ["Polished calfskin", "Elastic side panels", "4 cm stacked heel", "Made in Italy"],
+  },
+];

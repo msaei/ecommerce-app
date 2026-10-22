@@ -243,3 +243,25 @@
   --btn-px: 0;
   width: var(--btn-h, 3rem);
 }
+
+/* ---------- Forms ---------- */
+
+/* Underline-only text input. */
+@utility field {
+  width: 100%;
+  min-height: 3rem;
+  padding-inline: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  background-color: transparent;
+  font-size: var(--text-body);
+  transition: border-color 200ms var(--ease-luxe);
+
+  &::placeholder {
+    color: var(--color-muted);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-ink);
+  }
+}
